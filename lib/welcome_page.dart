@@ -8,7 +8,12 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 88, 1, 155),
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 88, 1, 155),
+            Color.fromARGB(255, 48, 0, 84)
+          ],
+        ),
       ),
       child: Center(
         child: Column(
@@ -34,7 +39,7 @@ class WelcomePage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2),
                 ),
-                backgroundColor: Color.fromARGB(255, 114, 4, 197),
+                backgroundColor: const Color.fromARGB(255, 114, 4, 197),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
                   vertical: 10,
