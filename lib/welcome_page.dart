@@ -2,7 +2,9 @@ import 'package:adv_basics/styled_text.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+  final void Function() startQuiz;
+
+  const WelcomePage(this.startQuiz, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class WelcomePage extends StatelessWidget {
             height: 60,
           ),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: startQuiz,
             style: buttonStyle,
             label: const Text(
               'Start Quiz',

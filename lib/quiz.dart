@@ -1,13 +1,34 @@
+import 'package:adv_basics/questions_page.dart';
 import 'package:adv_basics/welcome_page.dart';
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class QuizApp extends StatefulWidget {
+  const QuizApp({super.key});
+
+  @override
+  State<QuizApp> createState() => _QuizState();
+}
+
+class _QuizState extends State<QuizApp> {
+  var activeScreen = 'start-screen';
+  // Widget? activeScreen;
+
+  // @override
+  // void initState() {
+  //   activeScreen = WelcomePage(switchScreen);
+  //   super.initState();
+  // }
+
+  void switchScreen() {
+    setState(() {
+      activeScreen = 'questions-screen';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AdvBasiscs',
+      title: 'AdvBasics',
       home: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
@@ -20,7 +41,9 @@ class MyApp extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
           ),
-          child: const WelcomePage(),
+          child: activeScreen == 'start-screen'
+              ? WelcomePage(switchScreen)
+              : const QuestionsPage(),
         ),
       ),
     );
