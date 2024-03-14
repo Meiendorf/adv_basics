@@ -27,6 +27,10 @@ class _QuizState extends State<QuizApp> {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidget = activeScreen == 'start-screen'
+        ? WelcomePage(switchScreen)
+        : const QuestionsPage();
+
     return MaterialApp(
       title: 'AdvBasics',
       home: Scaffold(
@@ -41,9 +45,7 @@ class _QuizState extends State<QuizApp> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen == 'start-screen'
-              ? WelcomePage(switchScreen)
-              : const QuestionsPage(),
+          child: screenWidget,
         ),
       ),
     );
