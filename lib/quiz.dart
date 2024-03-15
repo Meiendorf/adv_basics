@@ -2,6 +2,7 @@ import 'package:adv_basics/data/questions.dart';
 import 'package:adv_basics/questions_page.dart';
 import 'package:adv_basics/welcome_page.dart';
 import 'package:flutter/material.dart';
+import 'package:adv_basics/results_page.dart';
 
 class QuizApp extends StatefulWidget {
   const QuizApp({super.key});
@@ -32,17 +33,26 @@ class _QuizState extends State<QuizApp> {
 
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        selectedAnswers = [];
-        activeScreen = 'start-screen';
+        activeScreen = 'results-screen';
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    var screenWidget = activeScreen == 'start-screen'
-        ? WelcomePage(switchScreen)
-        : QuestionsPage(onSelectAnswer: chooseAnswers);
+    Widget screenWidget = WelcomePage(switchScreen);
+
+    switch (activeScreen) {
+      case 'questions-screen':
+        screenWidget = QuestionsPage(onSelectAnswer: chooseAnswers);
+        break;
+      case 'results-screen':
+        screenWidget = ResultsPage(chosenAnswers: selectedAnswers);
+        break;
+      default:
+        screenWidget = WelcomePage(switchScreen);
+        break;
+    }
 
     return MaterialApp(
       title: 'AdvBasics',
