@@ -1,3 +1,4 @@
+import 'package:adv_basics/data/questions.dart';
 import 'package:adv_basics/questions_page.dart';
 import 'package:adv_basics/welcome_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizState extends State<QuizApp> {
+  List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
   // Widget? activeScreen;
 
@@ -25,11 +27,22 @@ class _QuizState extends State<QuizApp> {
     });
   }
 
+  void chooseAnswers(String answer) {
+    selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        selectedAnswers = [];
+        activeScreen = 'start-screen';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenWidget = activeScreen == 'start-screen'
         ? WelcomePage(switchScreen)
-        : const QuestionsPage();
+        : QuestionsPage(onSelectAnswer: chooseAnswers);
 
     return MaterialApp(
       title: 'AdvBasics',
