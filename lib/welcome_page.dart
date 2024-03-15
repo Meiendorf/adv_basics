@@ -28,7 +28,7 @@ class WelcomePage extends StatelessWidget {
           ),
           ElevatedButton.icon(
             onPressed: startQuiz,
-            style: buttonStyle,
+            style: screenButtonStyle,
             label: const Text(
               'Start Quiz',
               style: TextStyle(
@@ -46,7 +46,7 @@ class WelcomePage extends StatelessWidget {
   }
 }
 
-final buttonStyle = ElevatedButton.styleFrom(
+final screenButtonStyle = ElevatedButton.styleFrom(
   foregroundColor: Colors.white,
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(2),
